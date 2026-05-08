@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
 
 export const metadata: Metadata = {
   title: "St. Kitts & Nevis Business Directory | Find Local Businesses",
@@ -18,19 +17,79 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Safety font-family backup */}
-        <style>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           :root {
+            --primary: #ff6b00;
+            --primary-hover: #e66000;
+            --secondary: #00d1ff;
+            --accent: #2ecc71;
+            --background: #ffffff;
+            --foreground: #1a1a1a;
+            --surface: #f8fafc;
+            --border: #e2e8f0;
+            --muted: #64748b;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --font-display: 'Outfit', 'Inter', sans-serif;
+            --shadow-sm: 0 2px 4px rgba(255, 107, 0, 0.1);
+            --shadow-md: 0 10px 20px rgba(255, 107, 0, 0.15);
+            --shadow-lg: 0 20px 40px rgba(255, 107, 0, 0.2);
+            --radius: 1.5rem;
           }
-          body { 
-            margin: 0; 
-            background-color: white; 
-            color: #1a1a1a; 
-            font-family: var(--font-sans);
+
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); margin: 0; }
+          .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+          /* Navbar */
+          .navbar { background: var(--background); border-bottom: 1px solid var(--border); padding: 1.25rem 0; position: sticky; top: 0; z-index: 1000; }
+          .navbar-inner { display: flex; justify-content: space-between; align-items: center; }
+          .logo { font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+          .logo-dot { width: 10px; height: 10px; background: var(--secondary); border-radius: 50%; }
+          .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+          .nav-links a { text-decoration: none; color: var(--foreground); font-weight: 600; transition: color 0.2s; }
+          .nav-links a:hover { color: var(--primary); }
+          .btn-primary { background: var(--primary); color: white; padding: 0.8rem 1.75rem; border-radius: var(--radius); font-weight: 700; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+          .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+          /* Hero */
+          .hero { padding: 8rem 0; position: relative; background: #fdfcf0; overflow: hidden; }
+          .blob { position: absolute; border-radius: 50%; filter: blur(80px); z-index: 1; opacity: 0.4; }
+          .blob-1 { width: 400px; height: 400px; background: var(--primary); top: -100px; right: -100px; }
+          .blob-2 { width: 300px; height: 300px; background: var(--secondary); bottom: -50px; left: -50px; }
+          .hero-content { position: relative; z-index: 10; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+          .explore-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 100px; font-weight: 800; font-size: 0.8rem; margin-bottom: 2rem; }
+          .explore-badge .dot { width: 8px; height: 8px; background: white; border-radius: 50%; }
+          .mockup-title { font-size: 4.5rem; font-weight: 900; line-height: 1; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+          .mockup-title span { display: block; color: var(--primary); }
+          .hero-desc { font-size: 1.25rem; color: #555; margin-bottom: 3.5rem; max-width: 500px; line-height: 1.6; }
+          .search-box-vibrant { background: white; padding: 0.6rem; border-radius: 100px; display: flex; align-items: center; box-shadow: 0 20px 50px rgba(0,0,0,0.1); max-width: 600px; }
+          .input-group { display: flex; align-items: center; gap: 1rem; padding: 0 1.5rem; flex: 1; }
+          .input-group input { border: none; outline: none; padding: 0.8rem 0; width: 100%; font-size: 1.1rem; }
+
+          .hero-visual { position: relative; height: 500px; display: flex; align-items: center; justify-content: center; }
+          .visual-card-main { position: relative; width: 90%; height: 400px; border-radius: 3rem; overflow: hidden; z-index: 5; box-shadow: var(--shadow-lg); transform: rotate(-2deg); }
+          .visual-card-sub { position: absolute; width: 50%; height: 250px; border-radius: 2rem; overflow: hidden; bottom: 20px; right: -20px; z-index: 6; border: 8px solid white; box-shadow: var(--shadow-lg); transform: rotate(4deg); }
+          .foliage-emoji { position: absolute; font-size: 8rem; bottom: -40px; left: -60px; z-index: 10; opacity: 0.8; transform: rotate(-20deg); }
+
+          /* Categories */
+          .categories-section { padding: 8rem 0; }
+          .vibrant-title { font-size: 2.2rem; font-weight: 900; text-align: center; margin-bottom: 1rem; letter-spacing: 0.1em; }
+          .title-underline { width: 60px; height: 6px; background: var(--primary); margin: 0 auto 5rem; border-radius: 10px; }
+          .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2.5rem; }
+          .cat-card { background: white; padding: 3rem 2rem; border-radius: 3rem; text-decoration: none; color: inherit; text-align: center; transition: transform 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); }
+          .cat-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(255, 107, 0, 0.15); }
+          .cat-icon { width: 70px; height: 70px; border-radius: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; }
+          .cat-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; }
+          .cat-badge { display: inline-block; background: var(--secondary); color: white; padding: 0.4rem 1.25rem; border-radius: 100px; font-size: 0.7rem; font-weight: 800; }
+
+          @media (max-width: 992px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-desc { margin: 0 auto 3rem; }
+            .search-box-vibrant { margin: 0 auto; }
+            .mockup-title { font-size: 3rem; }
+            .hero-visual { height: 400px; margin-top: 2rem; }
           }
-        `}</style>
+        ` }} />
       </head>
       <body>
         <Navbar />

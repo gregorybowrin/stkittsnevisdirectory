@@ -14,6 +14,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log("SKN Directory Version: 1.2 - Nuclear Design");
   return (
     <html lang="en">
       <head>

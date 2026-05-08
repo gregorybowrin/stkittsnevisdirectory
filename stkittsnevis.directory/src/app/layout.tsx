@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
+import { Inter, Outfit } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 export const metadata: Metadata = {
   title: "St. Kitts & Nevis Business Directory | Find Local Businesses",
@@ -18,25 +29,23 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: `
 :root {
   /* Color Palette - Vibrant Caribbean Modernism */
-  --primary: #ff6b00; /* Sunset Orange */
+  --primary: #ff6b00;
   --primary-glow: rgba(255, 107, 0, 0.3);
-  --secondary: #00d1ff; /* Tropical Turquoise */
+  --secondary: #00d1ff;
   --secondary-glow: rgba(0, 209, 255, 0.3);
-  --accent: #2ecc71; /* Jungle Green */
-  --background: #fdfcf0; /* Sand White */
+  --accent: #2ecc71;
+  --background: #fdfcf0;
   --foreground: #1a1a1a;
   --glass: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.4);
   --shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-  --font-sans: 'Inter', -apple-system, sans-serif;
-  --font-display: 'Outfit', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
   background: var(--background); 
   color: var(--foreground); 
-  font-family: var(--font-sans); 
+  font-family: var(--font-sans), sans-serif; 
   margin: 0; 
   overflow-x: hidden;
   background-image: 
@@ -76,7 +85,7 @@ body {
   z-index: 1000; 
 }
 .navbar-inner { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; letter-spacing: -1px; }
+.logo { font-family: var(--font-display), sans-serif; font-size: 2rem; font-weight: 900; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; letter-spacing: -1px; }
 .logo span { color: var(--secondary); }
 
 .btn-primary { 
@@ -94,7 +103,7 @@ body {
 .btn-primary:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 15px 30px var(--primary-glow); }
 
 /* Typography */
-h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.04em; }
+h1, h2, h3 { font-family: var(--font-display), sans-serif; letter-spacing: -0.04em; }
 
 /* Footer Custom Styles */
 .footer { background: #111; color: white; padding: 10rem 0 5rem; position: relative; overflow: hidden; }
@@ -102,7 +111,7 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.04em; }
 
         ` }} />
       </head>
-      <body>
+      <body className={`${inter.variable} ${outfit.variable}`}>
         <Navbar />
         <main>{children}</main>
         <Footer />

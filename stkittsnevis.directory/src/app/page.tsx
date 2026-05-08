@@ -233,35 +233,38 @@ export default function Home() {
           transform: scale(1.05);
         }
 
-        /* Hero Visual Mockup */
+        /* Hero Visual Mockup - Safety Fix */
         .hero-visual-mockup {
           position: relative;
-          height: 550px;
+          height: 500px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .visual-card-1 {
-          position: absolute;
-          width: 80%;
-          height: 80%;
-          border-radius: 4rem;
+          position: relative;
+          width: 90%;
+          height: 400px;
+          border-radius: 3rem;
           overflow: hidden;
           z-index: 2;
           box-shadow: var(--shadow-lg);
-          transform: rotate(-3deg);
+          transform: rotate(-2deg);
         }
 
         .visual-card-2 {
           position: absolute;
-          width: 60%;
-          height: 60%;
-          border-radius: 4rem;
+          width: 50%;
+          height: 250px;
+          border-radius: 2rem;
           overflow: hidden;
-          bottom: 0;
-          right: 0;
+          bottom: 20px;
+          right: -20px;
           z-index: 3;
           box-shadow: var(--shadow-lg);
-          transform: rotate(5deg);
-          border: 10px solid white;
+          transform: rotate(4deg);
+          border: 8px solid white;
         }
 
         .visual-card-1 :global(img), .visual-card-2 :global(img) {

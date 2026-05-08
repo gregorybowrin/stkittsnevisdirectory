@@ -15,39 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <style dangerouslySetInnerHTML={{ __html: `
-          :root {
-            --primary: #ff6b00;
-            --primary-hover: #e66000;
-            --secondary: #00d1ff;
-            --accent: #2ecc71;
-            --background: #ffffff;
-            --foreground: #1a1a1a;
-            --surface: #f8fafc;
-            --border: #e2e8f0;
-            --muted: #64748b;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-display: 'Outfit', 'Inter', sans-serif;
-            --shadow-sm: 0 2px 4px rgba(255, 107, 0, 0.1);
-            --shadow-md: 0 10px 20px rgba(255, 107, 0, 0.15);
-            --shadow-lg: 0 20px 40px rgba(255, 107, 0, 0.2);
-            --radius: 1.5rem;
-          }
-
-          * { margin: 0; padding: 0; box-sizing: border-box; }
-          body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); margin: 0; overflow-x: hidden; }
-          .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-
-          /* Navbar */
-          .navbar { background: var(--background); border-bottom: 1px solid var(--border); padding: 1.25rem 0; position: sticky; top: 0; z-index: 1000; }
-          .navbar-inner { display: flex; justify-content: space-between; align-items: center; }
-          .logo { font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
-          .logo-dot { width: 10px; height: 10px; background: var(--secondary); border-radius: 50%; }
-          .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-          .nav-links a { text-decoration: none; color: var(--foreground); font-weight: 600; transition: color 0.2s; }
-          .nav-links a:hover { color: var(--primary); }
-          .btn-primary { background: var(--primary); color: white; padding: 0.8rem 1.75rem; border-radius: var(--radius); font-weight: 700; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
-          .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        <link rel="stylesheet" href="/style.css" />
+      </head>
 
           /* Hero */
           .hero { padding: 8rem 0; position: relative; background: #fdfcf0; overflow: hidden; }

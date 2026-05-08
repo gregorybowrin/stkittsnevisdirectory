@@ -21,8 +21,11 @@ export default function RootLayout({
         <link rel="stylesheet" href="/style.css" />
       </head>
       <body>
+        <div style={{ background: 'red', color: 'white', padding: '10px', textAlign: 'center', fontWeight: 'bold', zIndex: 10000, position: 'relative' }}>
+          V3.0 ACTIVE - IF YOU SEE THIS, THE SITE IS UPDATED
+        </div>
         <div style={{ position: 'fixed', bottom: '10px', right: '10px', background: '#ff6b00', color: 'white', padding: '5px 10px', borderRadius: '5px', fontSize: '10px', zIndex: 10000, fontWeight: 'bold' }}>
-          SKN v2.0
+          SKN v3.0
         </div>
         <Navbar />
         <main>{children}</main>

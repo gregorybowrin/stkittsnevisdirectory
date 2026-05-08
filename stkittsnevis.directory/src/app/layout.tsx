@@ -1,16 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const outfit = Outfit({
-  variable: "--font-display",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "St. Kitts & Nevis Business Directory | Find Local Businesses",
@@ -27,7 +16,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="en">
+      <head>
+        {/* Safety font-family backup */}
+        <style>{`
+          :root {
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Outfit', 'Inter', sans-serif;
+          }
+          body { 
+            margin: 0; 
+            background-color: white; 
+            color: #1a1a1a; 
+            font-family: var(--font-sans);
+          }
+        `}</style>
+      </head>
       <body>
         <Navbar />
         <main>{children}</main>

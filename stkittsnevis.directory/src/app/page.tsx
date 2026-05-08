@@ -88,7 +88,17 @@ export default function Home() {
               <ChevronRight size={18} />
             </div>
           </Link>
-          {categories.filter(c => c.name !== 'Restaurants' && c.name !== 'Schools').map((cat) => (
+          <Link href="/directory/services" className="category-card glass-card">
+            <div className="icon-wrapper" style={{ backgroundColor: `#FFD93D20`, color: '#FFD93D' }}>
+              <Briefcase size={28} />
+            </div>
+            <h3>Professional</h3>
+            <p>89 Listings</p>
+            <div className="category-arrow">
+              <ChevronRight size={18} />
+            </div>
+          </Link>
+          {categories.filter(c => c.name !== 'Restaurants' && c.name !== 'Schools' && c.name !== 'Professional').map((cat) => (
             <div key={cat.name} className="category-card glass-card">
               <div className="icon-wrapper" style={{ backgroundColor: `${cat.color}20`, color: cat.color }}>
                 <cat.icon size={28} />

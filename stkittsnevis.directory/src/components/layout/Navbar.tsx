@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Search, User, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 
 export default function Navbar() {
   return (

@@ -101,7 +101,9 @@ export default function RestaurantsPage() {
                     <span key={tag} className="tag">{tag}</span>
                   ))}
                 </div>
-                <button className="btn-outline">View Details</button>
+                <Link href={`/listing/${res.id}`}>
+                  <button className="btn-outline">View Details</button>
+                </Link>
               </div>
             </div>
           ))}

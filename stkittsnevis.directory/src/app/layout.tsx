@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   keywords: "St. Kitts, Nevis, Business Directory, Restaurants, Hotels, Lawyers, Doctors, Schools, Government Offices",
 };
 
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

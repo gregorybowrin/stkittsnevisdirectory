@@ -1,0 +1,68 @@
+[
+  {
+    "id": "kelsick-wilkin-ferdinand",
+    "name": "Kelsick, Wilkin & Ferdinand",
+    "category": "Legal Services",
+    "subCategory": "Law Firm",
+    "island": "St. Kitts",
+    "location": "Independence Square South, Basseterre",
+    "phone": "869-465-2645",
+    "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800",
+    "tags": ["Full Service", "Commercial", "Litigation"]
+  },
+  {
+    "id": "wilmed-health-services",
+    "name": "WilMed Health Services",
+    "category": "Medical Services",
+    "subCategory": "Clinic",
+    "island": "St. Kitts",
+    "location": "The Sands Complex, Basseterre",
+    "phone": "869-465-1226",
+    "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800",
+    "tags": ["General Practice", "Diagnostics", "Modern Facility"]
+  },
+  {
+    "id": "daniel-brantley",
+    "name": "Daniel Brantley",
+    "category": "Legal Services",
+    "subCategory": "Law Firm",
+    "island": "Nevis",
+    "location": "Main Street, Charlestown",
+    "phone": "869-469-5259",
+    "image": "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=800",
+    "tags": ["Nevis", "Corporate", "International Law"]
+  },
+  {
+    "id": "dr-chandy-jacobs",
+    "name": "Dr. Chandy Jacobs",
+    "category": "Medical Services",
+    "subCategory": "Paediatrics",
+    "island": "Nevis",
+    "location": "Solomon Arcade, Charlestown",
+    "phone": "869-469-5264",
+    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800",
+    "tags": ["Paediatrics", "Family Practice", "Nevis"]
+  },
+  {
+    "id": "michella-adrien-law",
+    "name": "Michella Adrien Law Office",
+    "category": "Legal Services",
+    "subCategory": "Lawyer",
+    "island": "St. Kitts",
+    "location": "South Independence Square Street, Basseterre",
+    "phone": "869-465-1603",
+    "image": "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=800",
+    "tags": ["Personal Injury", "Family Law", "Civil Litigation"]
+  },
+  {
+    "id": "dr-samuel-nisbett",
+    "name": "Dr. Samuel Nisbett",
+    "category": "Medical Services",
+    "subCategory": "Ophthalmology",
+    "island": "St. Kitts",
+    "location": "The Sands Complex, Basseterre",
+    "phone": "869-465-0152",
+    "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800",
+    "tags": ["Eye Specialist", "Surgery", "Consultation"]
+  }
+]

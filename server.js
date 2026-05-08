@@ -1,5 +1,6 @@
 const { createServer } = require('http')
 const { parse } = require('url')
+const { join } = require('path')
 const next = require('next')
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -15,7 +16,13 @@ app.prepare().then(() => {
 
     // Add basic logging for debugging 404s
     if (pathname.startsWith('/_next/')) {
-       console.log(`[Static] Serving: ${pathname}`);
+       console.log(`[Static] Requesting: ${pathname}`);
+    }
+
+    // Explicitly handle /_next/static
+    if (pathname.startsWith('/_next/static/')) {
+      const filePath = join(__dirname, '.next', 'static', pathname.replace('/_next/static/', ''))
+      console.log(`[Static] Mapping to: ${filePath}`);
     }
 
     handle(req, res, parsedUrl)

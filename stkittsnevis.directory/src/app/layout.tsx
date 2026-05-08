@@ -14,12 +14,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log("SKN Directory Version: 2.0 - Active");
   return (
     <html lang="en">
       <head>
         <link rel="stylesheet" href="/style.css" />
       </head>
       <body>
+        <div style={{ position: 'fixed', bottom: '10px', right: '10px', background: '#ff6b00', color: 'white', padding: '5px 10px', borderRadius: '5px', fontSize: '10px', zIndex: 10000, fontWeight: 'bold' }}>
+          SKN v2.0
+        </div>
         <Navbar />
         <main>{children}</main>
         <Footer />

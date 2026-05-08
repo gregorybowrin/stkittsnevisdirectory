@@ -13,19 +13,25 @@ const categories = [
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [location, setLocation] = useState('');
 
   return (
     <div className="home-container">
       {/* Dynamic Hero Section */}
       <section className="hero">
+        {/* Background Blobs for Mockup Feel */}
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
+        
         <div className="container hero-content">
           <div className="hero-text">
-            <span className="hero-badge">Discover the Magic</span>
-            <h1>Explore St. Kitts & Nevis <span>Like Never Before</span></h1>
+            <div className="explore-badge">
+               <span className="dot"></span>
+               EXPLORE ST. KITTS & NEVIS
+            </div>
+            <h1 className="mockup-title">Discover the <span>Pulse of the Islands</span></h1>
             <p>The ultimate business directory for finding the finest dining, education, and professional services across the Federation.</p>
             
-            <div className="search-box-vibrant">
+            <div className="search-box-mockup">
               <div className="input-group">
                 <Search size={20} className="input-icon" />
                 <input 
@@ -35,33 +41,17 @@ export default function Home() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <div className="divider"></div>
-              <div className="input-group">
-                <MapPin size={20} className="input-icon" />
-                <input 
-                  type="text" 
-                  placeholder="Location..." 
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                />
-              </div>
-              <button className="search-btn">Search Now</button>
+              <button className="search-btn-vibrant">Search</button>
             </div>
           </div>
-          <div className="hero-visual">
-             <div className="main-visual-card">
-                <Image 
-                  src="/hero-bg.png" 
-                  alt="St. Kitts and Nevis Aerial" 
-                  fill
-                  priority
-                />
-                <div className="floating-stat glass-card">
-                   <Star fill="#FFD700" color="#FFD700" size={16} />
-                   <span>500+ Verified Businesses</span>
-                </div>
+          <div className="hero-visual-mockup">
+             <div className="visual-card-1">
+                <Image src="/hero-bg.png" alt="St. Kitts" fill />
              </div>
-             <div className="secondary-visual-card"></div>
+             <div className="visual-card-2">
+                <Image src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=600" alt="Island Life" fill />
+             </div>
+             <div className="foliage leaf-1">🍃</div>
           </div>
         </div>
       </section>
@@ -69,44 +59,41 @@ export default function Home() {
       {/* Category Grid */}
       <section className="categories-section container">
         <div className="section-header">
-          <h2>Browse by Category</h2>
-          <p>Find exactly what you need in seconds</p>
+          <h2 className="vibrant-title">BUSINESS DIRECTORY</h2>
+          <div className="title-underline"></div>
         </div>
-        <div className="category-grid-vibrant">
+        <div className="category-grid-mockup">
           {categories.map((cat) => (
-            <Link href={cat.path} key={cat.name} className="cat-card-vibrant">
-               <div className="cat-icon-vibrant" style={{ backgroundColor: cat.color }}>
-                  <cat.icon size={28} color="white" />
+            <Link href={cat.path} key={cat.name} className="cat-card-mockup">
+               <div className="cat-icon-mockup" style={{ backgroundColor: cat.color }}>
+                  <cat.icon size={32} color="white" />
                </div>
                <h3>{cat.name}</h3>
-               <p>{cat.count} Businesses</p>
-               <div className="cat-arrow">
-                  <ArrowRight size={18} />
-               </div>
+               <div className="view-all-badge">VIEW ALL</div>
             </Link>
           ))}
-          <div className="cat-card-vibrant add-business">
-               <div className="cat-icon-vibrant" style={{ backgroundColor: '#1A1A1A' }}>
-                  <Plus size={28} color="white" />
+          <div className="cat-card-mockup add-business">
+               <div className="cat-icon-mockup" style={{ backgroundColor: '#1A1A1A' }}>
+                  <Plus size={32} color="white" />
                </div>
                <h3>Your Business?</h3>
-               <p>Get listed today</p>
-               <Link href="/pricing" className="text-link">Learn More</Link>
+               <Link href="/pricing" className="view-all-badge" style={{ backgroundColor: '#1A1A1A' }}>GET LISTED</Link>
           </div>
         </div>
       </section>
 
       {/* Featured Section */}
       <section className="featured-section container">
-        <div className="featured-banner glass-card">
+        <div className="featured-banner-vibrant">
            <div className="featured-content">
               <h3>Boost Your Visibility</h3>
               <p>Join hundreds of local businesses and reach thousands of potential customers daily. Our premium listings offer 10x more engagement.</p>
-              <Link href="/pricing" className="btn-primary">View Pricing Plans</Link>
+              <Link href="/pricing" className="btn-white">View Pricing Plans</Link>
            </div>
            <div className="featured-image">
               <Image src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800" alt="Premium Business" fill />
            </div>
+           <div className="foliage leaf-2">🌿</div>
         </div>
       </section>
 
@@ -114,68 +101,106 @@ export default function Home() {
         .home-container {
           padding-bottom: 5rem;
           overflow-x: hidden;
+          background: #fff;
         }
 
-        /* Hero Styling */
         .hero {
-          padding: 6rem 0 8rem;
-          background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+          padding: 8rem 0 10rem;
           position: relative;
+          background: #fdfcf0; /* Warm off-white */
+          overflow: hidden;
+        }
+
+        /* Blobs */
+        .blob {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          z-index: 1;
+        }
+
+        .blob-1 {
+          width: 500px;
+          height: 500px;
+          background: rgba(255, 107, 0, 0.15);
+          top: -100px;
+          right: -100px;
+        }
+
+        .blob-2 {
+          width: 400px;
+          height: 400px;
+          background: rgba(0, 209, 255, 0.15);
+          bottom: -50px;
+          left: -50px;
         }
 
         .hero-content {
+          position: relative;
+          z-index: 2;
           display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
+          grid-template-columns: 1fr 1fr;
           gap: 4rem;
           align-items: center;
         }
 
-        .hero-badge {
-          display: inline-block;
-          background: rgba(255, 107, 0, 0.1);
-          color: var(--primary);
-          padding: 0.5rem 1rem;
+        .explore-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.75rem;
+          background: var(--accent);
+          color: white;
+          padding: 0.6rem 1.25rem;
           border-radius: 100px;
-          font-weight: 700;
+          font-weight: 800;
           font-size: 0.85rem;
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
         }
 
-        h1 {
-          font-size: 4.5rem;
-          line-height: 1.1;
-          margin-bottom: 1.5rem;
-          color: var(--foreground);
+        .explore-badge .dot {
+          width: 8px;
+          height: 8px;
+          background: white;
+          border-radius: 50%;
         }
 
-        h1 span {
-          color: var(--primary);
+        .mockup-title {
+          font-size: 5rem;
+          line-height: 1;
+          margin-bottom: 2rem;
+          color: #1a1a1a;
+          font-weight: 900;
+          letter-spacing: -0.03em;
+        }
+
+        .mockup-title span {
           display: block;
+          color: var(--primary);
         }
 
         .hero-text p {
           font-size: 1.25rem;
-          color: var(--muted);
-          margin-bottom: 3rem;
-          max-width: 600px;
+          color: #555;
+          margin-bottom: 3.5rem;
+          max-width: 500px;
           line-height: 1.6;
         }
 
-        /* Search Box Vibrant */
-        .search-box-vibrant {
+        .search-box-mockup {
           background: white;
-          padding: 0.75rem;
-          border-radius: 2rem;
+          padding: 0.5rem;
+          border-radius: 100px;
           display: flex;
           align-items: center;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-          max-width: 800px;
+          box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+          max-width: 550px;
         }
 
         .input-group {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
+          gap: 1rem;
           padding: 0 1.5rem;
           flex: 1;
         }
@@ -187,216 +212,207 @@ export default function Home() {
         .input-group input {
           border: none;
           outline: none;
-          padding: 0.75rem 0;
+          padding: 1rem 0;
           width: 100%;
-          font-size: 1rem;
-          color: var(--foreground);
+          font-size: 1.1rem;
+          font-weight: 500;
         }
 
-        .divider {
-          width: 1px;
-          height: 30px;
-          background: var(--border);
-        }
-
-        .search-btn {
+        .search-btn-vibrant {
           background: var(--primary);
           color: white;
           border: none;
-          padding: 1rem 2rem;
-          border-radius: 1.5rem;
-          font-weight: 700;
+          padding: 1rem 2.5rem;
+          border-radius: 100px;
+          font-weight: 800;
           cursor: pointer;
           transition: transform 0.2s ease;
         }
 
-        .search-btn:hover {
+        .search-btn-vibrant:hover {
           transform: scale(1.05);
         }
 
-        /* Hero Visual */
-        .hero-visual {
+        /* Hero Visual Mockup */
+        .hero-visual-mockup {
           position: relative;
-          height: 500px;
+          height: 550px;
         }
 
-        .main-visual-card {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          border-radius: 3rem;
+        .visual-card-1 {
+          position: absolute;
+          width: 80%;
+          height: 80%;
+          border-radius: 4rem;
           overflow: hidden;
-          transform: rotate(2deg);
-          box-shadow: var(--shadow-lg);
           z-index: 2;
+          box-shadow: var(--shadow-lg);
+          transform: rotate(-3deg);
         }
 
-        .main-visual-card :global(img) {
+        .visual-card-2 {
+          position: absolute;
+          width: 60%;
+          height: 60%;
+          border-radius: 4rem;
+          overflow: hidden;
+          bottom: 0;
+          right: 0;
+          z-index: 3;
+          box-shadow: var(--shadow-lg);
+          transform: rotate(5deg);
+          border: 10px solid white;
+        }
+
+        .visual-card-1 :global(img), .visual-card-2 :global(img) {
           object-fit: cover;
         }
 
-        .secondary-visual-card {
+        .foliage {
           position: absolute;
-          top: -20px;
-          right: -20px;
-          width: 100%;
-          height: 100%;
-          background: var(--secondary);
-          border-radius: 3rem;
-          z-index: 1;
-          opacity: 0.3;
+          z-index: 4;
+          opacity: 0.8;
+          pointer-events: none;
         }
 
-        .floating-stat {
-          position: absolute;
-          bottom: 2rem;
-          right: 2rem;
-          padding: 1rem 1.5rem;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          background: rgba(255,255,255,0.9);
-          backdrop-filter: blur(10px);
-          border-radius: 1rem;
-          font-weight: 700;
-          font-size: 0.9rem;
-          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        .leaf-1 {
+          font-size: 10rem;
+          bottom: -50px;
+          left: -100px;
+          transform: rotate(-20deg);
         }
 
-        /* Category Grid Vibrant */
+        /* Category Grid Mockup */
         .categories-section {
-          padding-top: 8rem;
-          margin-bottom: 8rem;
+          padding: 10rem 0;
         }
 
-        .section-header {
-          margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
+        .vibrant-title {
           font-size: 2.5rem;
-          margin-bottom: 0.5rem;
+          font-weight: 900;
+          text-align: center;
+          margin-bottom: 1rem;
+          letter-spacing: 0.1em;
         }
 
-        .section-header p {
-          color: var(--muted);
-          font-size: 1.1rem;
+        .title-underline {
+          width: 80px;
+          height: 6px;
+          background: var(--primary);
+          margin: 0 auto 5rem;
+          border-radius: 10px;
         }
 
-        .category-grid-vibrant {
+        .category-grid-mockup {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-          gap: 2rem;
+          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+          gap: 2.5rem;
         }
 
-        .cat-card-vibrant {
+        .cat-card-mockup {
           background: white;
-          padding: 2.5rem;
-          border-radius: 2.5rem;
+          padding: 3rem 2rem;
+          border-radius: 3.5rem;
           text-decoration: none;
           color: inherit;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          border: 1px solid var(--border);
-          position: relative;
-          overflow: hidden;
+          text-align: center;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+          border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .cat-card-vibrant:hover {
-          transform: translateY(-10px);
-          border-color: var(--primary);
-          box-shadow: var(--shadow-lg);
+        .cat-card-mockup:hover {
+          transform: translateY(-15px) scale(1.02);
+          box-shadow: 0 30px 60px rgba(255, 107, 0, 0.15);
         }
 
-        .cat-icon-vibrant {
-          width: 60px;
-          height: 60px;
-          border-radius: 1.25rem;
+        .cat-icon-mockup {
+          width: 80px;
+          height: 80px;
+          border-radius: 2.5rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 2rem;
-          box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+          margin: 0 auto 2rem;
         }
 
-        .cat-card-vibrant h3 {
+        .cat-card-mockup h3 {
           font-size: 1.5rem;
-          margin-bottom: 0.5rem;
+          font-weight: 800;
+          margin-bottom: 1.5rem;
         }
 
-        .cat-card-vibrant p {
-          color: var(--muted);
-          font-weight: 500;
-        }
-
-        .cat-arrow {
-          position: absolute;
-          bottom: 2.5rem;
-          right: 2.5rem;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: var(--surface);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--primary);
-          transition: all 0.3s ease;
-        }
-
-        .cat-card-vibrant:hover .cat-arrow {
-          background: var(--primary);
-          color: white;
-        }
-
-        .add-business {
-           background: var(--surface);
-        }
-
-        .text-link {
+        .view-all-badge {
           display: inline-block;
-          margin-top: 1rem;
-          color: var(--primary);
-          font-weight: 700;
-          text-decoration: none;
-          font-size: 0.9rem;
+          background: var(--secondary);
+          color: white;
+          padding: 0.4rem 1.25rem;
+          border-radius: 100px;
+          font-size: 0.75rem;
+          font-weight: 800;
         }
 
-        /* Featured Banner */
-        .featured-banner {
+        /* Featured Banner Vibrant */
+        .featured-banner-vibrant {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1.2fr;
+          background: linear-gradient(135deg, var(--primary), #ff914d);
+          border-radius: 4rem;
           overflow: hidden;
-          padding: 0;
-          background: var(--foreground);
-          color: white;
-          border-radius: 3rem;
+          position: relative;
+          box-shadow: var(--shadow-lg);
         }
 
         .featured-content {
           padding: 5rem;
+          color: white;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          gap: 1.5rem;
+          gap: 2rem;
         }
 
         .featured-content h3 {
-          font-size: 2.5rem;
+          font-size: 3rem;
+          font-weight: 900;
         }
 
         .featured-content p {
-          font-size: 1.1rem;
-          opacity: 0.8;
+          font-size: 1.2rem;
           line-height: 1.6;
+          opacity: 0.9;
         }
 
         .featured-image {
           position: relative;
-          min-height: 400px;
+          min-height: 500px;
         }
 
         .featured-image :global(img) {
           object-fit: cover;
+        }
+
+        .btn-white {
+          background: white;
+          color: var(--primary);
+          padding: 1.2rem 2.5rem;
+          border-radius: 100px;
+          font-weight: 800;
+          text-decoration: none;
+          display: inline-block;
+          width: fit-content;
+          transition: transform 0.2s ease;
+        }
+
+        .btn-white:hover {
+          transform: translateY(-5px);
+        }
+
+        .leaf-2 {
+          font-size: 8rem;
+          top: -40px;
+          right: 20%;
+          transform: rotate(45deg);
         }
 
         @media (max-width: 992px) {
@@ -407,24 +423,16 @@ export default function Home() {
           .hero-text p {
             margin: 0 auto 3rem;
           }
-          .search-box-vibrant {
-            flex-direction: column;
-            border-radius: 2rem;
-            gap: 1rem;
+          .search-box-mockup {
+            margin: 0 auto;
           }
-          .divider {
-            display: none;
+          .mockup-title {
+            font-size: 3.5rem;
           }
-          .search-btn {
-            width: 100%;
+          .hero-visual-mockup {
+            height: 400px;
           }
-          h1 {
-            font-size: 3rem;
-          }
-          .hero-visual {
-            height: 350px;
-          }
-          .featured-banner {
+          .featured-banner-vibrant {
             grid-template-columns: 1fr;
           }
           .featured-content {

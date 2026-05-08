@@ -2,78 +2,79 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Search, Plus } from 'lucide-react';
+import { Search, User, Menu } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <nav className="navbar glass-card">
-      <div className="container nav-inner">
+    <nav className="navbar">
+      <div className="container navbar-inner">
         <Link href="/" className="logo">
-          SKN<span className="dot">.</span>Directory
+          SKN Directory <span className="logo-dot"></span>
         </Link>
-        
+
         <div className="nav-links">
-          <Link href="/directory/restaurants" className="nav-link">Restaurants</Link>
-          <Link href="/directory/hotels" className="nav-link">Hotels</Link>
-          <Link href="/directory/services" className="nav-link">Services</Link>
+          <Link href="/directory/restaurants">Restaurants</Link>
+          <Link href="/directory/schools">Schools</Link>
+          <Link href="/directory/services">Professional</Link>
+          <Link href="/pricing">Pricing</Link>
         </div>
 
         <div className="nav-actions">
-          <button className="icon-btn">
-            <Search size={20} />
-          </button>
-          <button className="btn-primary add-btn">
-            <Plus size={18} />
-            <span>List Business</span>
-          </button>
+          <button className="icon-btn mobile-only"><Menu size={20} /></button>
+          <button className="btn-primary">List Business</button>
         </div>
       </div>
 
       <style jsx>{`
         .navbar {
+          background: var(--background);
+          border-bottom: 1px solid var(--border);
+          padding: 1.25rem 0;
           position: sticky;
-          top: 1rem;
-          margin: 0 1rem;
-          z-index: 100;
-          border-radius: var(--radius);
-          background: var(--glass);
-          backdrop-filter: var(--glass-blur);
+          top: 0;
+          z-index: 1000;
         }
 
-        .nav-inner {
-          height: 70px;
+        .navbar-inner {
           display: flex;
-          align-items: center;
           justify-content: space-between;
+          align-items: center;
         }
 
         .logo {
           font-family: var(--font-display);
-          font-size: 1.5rem;
+          font-size: 1.75rem;
           font-weight: 800;
-          letter-spacing: -0.02em;
           color: var(--primary);
+          text-decoration: none;
+          letter-spacing: -0.02em;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
         }
 
-        .dot {
-          color: var(--accent);
+        .logo-dot {
+          width: 10px;
+          height: 10px;
+          background: var(--secondary);
+          border-radius: 50%;
         }
 
         .nav-links {
           display: flex;
-          gap: 2rem;
+          gap: 2.5rem;
+          align-items: center;
         }
 
-        .nav-link {
-          font-size: 0.95rem;
-          font-weight: 600;
+        .nav-links a {
+          text-decoration: none;
           color: var(--foreground);
-          opacity: 0.8;
-          transition: all 0.2s ease;
+          font-weight: 600;
+          font-size: 0.95rem;
+          transition: color 0.2s ease;
         }
 
-        .nav-link:hover {
-          opacity: 1;
+        .nav-links a:hover {
           color: var(--primary);
         }
 
@@ -83,40 +84,41 @@ export default function Navbar() {
           gap: 1rem;
         }
 
+        .btn-primary {
+          background: var(--primary);
+          color: white;
+          padding: 0.8rem 1.75rem;
+          border-radius: var(--radius);
+          font-weight: 700;
+          border: none;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+          background: var(--primary-hover);
+          transform: translateY(-2px);
+          box-shadow: var(--shadow-md);
+        }
+
         .icon-btn {
           background: transparent;
           border: none;
-          color: var(--muted);
+          color: var(--foreground);
           cursor: pointer;
-          padding: 0.5rem;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.2s ease;
         }
 
-        .icon-btn:hover {
-          background: var(--background);
-          color: var(--primary);
+        .mobile-only {
+          display: none;
         }
 
-        .add-btn {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.6rem 1.25rem;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
           .nav-links {
             display: none;
           }
-          .add-btn span {
-            display: none;
-          }
-          .add-btn {
-            padding: 0.6rem;
+          .mobile-only {
+            display: block;
           }
         }
       `}</style>

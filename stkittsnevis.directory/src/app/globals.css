@@ -1,12 +1,12 @@
 :root {
-  /* Color Palette - Premium Island Theme */
-  --primary: #0047ab; /* Deep Ocean Blue */
-  --primary-hover: #003380;
-  --secondary: #00a86b; /* Caribbean Green */
-  --accent: #ffd700; /* Sunshine Gold */
-  --background: #f8fafc; /* Light Sand */
-  --foreground: #0f172a;
-  --surface: #ffffff;
+  /* Color Palette - Caribbean Modernism */
+  --primary: #ff6b00; /* Vibrant Orange */
+  --primary-hover: #e66000;
+  --secondary: #00d1ff; /* Tropical Turquoise */
+  --accent: #2ecc71; /* Jungle Green */
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --surface: #f8fafc;
   --border: #e2e8f0;
   --muted: #64748b;
   
@@ -14,15 +14,22 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Outfit', sans-serif;
   
-  /* Shadows & Glassmorphism */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --glass: rgba(255, 255, 255, 0.7);
-  --glass-blur: blur(12px);
-  
-  /* Spacing */
-  --radius: 0.75rem;
+  /* Shadows & Organic Shapes */
+  --shadow-sm: 0 2px 4px rgba(255, 107, 0, 0.1);
+  --shadow-md: 0 10px 20px rgba(255, 107, 0, 0.15);
+  --shadow-lg: 0 20px 40px rgba(255, 107, 0, 0.2);
+  --radius: 1.5rem; /* More rounded */
+  --radius-sm: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --surface: #1e293b;
+    --border: #334155;
+    --muted: #94a3b8;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,249 +1,196 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Search, MapPin, Utensils, Hotel, GraduationCap, Briefcase, Plus, TrendingUp, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
+import { Search, MapPin, Utensils, GraduationCap, Briefcase, Plus, ChevronRight, Star, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const categories = [
-  { name: 'Restaurants', icon: Utensils, color: '#FF6B6B', count: 124 },
-  { name: 'Hotels', icon: Hotel, color: '#4D96FF', count: 56 },
-  { name: 'Schools', icon: GraduationCap, color: '#6BCB77', count: 42 },
-  { name: 'Professional', icon: Briefcase, color: '#FFD93D', count: 89 },
+  { name: 'Restaurants', icon: Utensils, color: '#FF6B00', count: 37, path: '/directory/restaurants' },
+  { name: 'Schools', icon: GraduationCap, color: '#00D1FF', count: 42, path: '/directory/schools' },
+  { name: 'Professional', icon: Briefcase, color: '#2ECC71', count: 89, path: '/directory/services' },
 ];
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [location, setLocation] = useState('');
 
   return (
-    <main className="home-container">
-      {/* Hero Section */}
+    <div className="home-container">
+      {/* Dynamic Hero Section */}
       <section className="hero">
-        <Image 
-          src="/hero-bg.png" 
-          alt="St. Kitts and Nevis" 
-          fill 
-          priority 
-          className="hero-image"
-        />
-        <div className="hero-overlay"></div>
         <div className="container hero-content">
-          <div className="hero-badge">
-            <TrendingUp size={14} />
-            <span>The #1 Directory in the Federation</span>
+          <div className="hero-text">
+            <span className="hero-badge">Discover the Magic</span>
+            <h1>Explore St. Kitts & Nevis <span>Like Never Before</span></h1>
+            <p>The ultimate business directory for finding the finest dining, education, and professional services across the Federation.</p>
+            
+            <div className="search-box-vibrant">
+              <div className="input-group">
+                <Search size={20} className="input-icon" />
+                <input 
+                  type="text" 
+                  placeholder="What are you looking for?" 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              <div className="divider"></div>
+              <div className="input-group">
+                <MapPin size={20} className="input-icon" />
+                <input 
+                  type="text" 
+                  placeholder="Location..." 
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+              </div>
+              <button className="search-btn">Search Now</button>
+            </div>
           </div>
-          <h1>Find Everything in <span className="highlight">St. Kitts & Nevis</span></h1>
-          <p className="hero-subtitle">Discover the best restaurants, schools, professional services, and hidden gems across the islands.</p>
-          
-          <div className="search-box-container glass-card">
-            <div className="search-input-group">
-              <Search className="search-icon" size={20} />
-              <input 
-                type="text" 
-                placeholder="What are you looking for?" 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            <div className="divider"></div>
-            <div className="search-input-group">
-              <MapPin className="search-icon" size={20} />
-              <select className="location-select">
-                <option>All Locations</option>
-                <option>Basseterre</option>
-                <option>Charlestown</option>
-                <option>Frigate Bay</option>
-                <option>Sandy Point</option>
-              </select>
-            </div>
-            <button className="btn-primary search-btn">Search Directory</button>
+          <div className="hero-visual">
+             <div className="main-visual-card">
+                <Image 
+                  src="/hero-bg.png" 
+                  alt="St. Kitts and Nevis Aerial" 
+                  fill
+                  priority
+                />
+                <div className="floating-stat glass-card">
+                   <Star fill="#FFD700" color="#FFD700" size={16} />
+                   <span>500+ Verified Businesses</span>
+                </div>
+             </div>
+             <div className="secondary-visual-card"></div>
           </div>
         </div>
       </section>
 
-      {/* Categories Section */}
+      {/* Category Grid */}
       <section className="categories-section container">
         <div className="section-header">
           <h2>Browse by Category</h2>
-          <p>Explore listings by industry and service type</p>
+          <p>Find exactly what you need in seconds</p>
         </div>
-        <div className="categories-grid">
-          <Link href="/directory/restaurants" className="category-card glass-card">
-            <div className="icon-wrapper" style={{ backgroundColor: `#FF6B6B20`, color: '#FF6B6B' }}>
-              <Utensils size={28} />
-            </div>
-            <h3>Restaurants</h3>
-            <p>124 Listings</p>
-            <div className="category-arrow">
-              <ChevronRight size={18} />
-            </div>
-          </Link>
-          <Link href="/directory/schools" className="category-card glass-card">
-            <div className="icon-wrapper" style={{ backgroundColor: `#6BCB7720`, color: '#6BCB77' }}>
-              <GraduationCap size={28} />
-            </div>
-            <h3>Schools</h3>
-            <p>42 Listings</p>
-            <div className="category-arrow">
-              <ChevronRight size={18} />
-            </div>
-          </Link>
-          <Link href="/directory/services" className="category-card glass-card">
-            <div className="icon-wrapper" style={{ backgroundColor: `#FFD93D20`, color: '#FFD93D' }}>
-              <Briefcase size={28} />
-            </div>
-            <h3>Professional</h3>
-            <p>89 Listings</p>
-            <div className="category-arrow">
-              <ChevronRight size={18} />
-            </div>
-          </Link>
-          {categories.filter(c => c.name !== 'Restaurants' && c.name !== 'Schools' && c.name !== 'Professional').map((cat) => (
-            <div key={cat.name} className="category-card glass-card">
-              <div className="icon-wrapper" style={{ backgroundColor: `${cat.color}20`, color: cat.color }}>
-                <cat.icon size={28} />
-              </div>
-              <h3>{cat.name}</h3>
-              <p>{cat.count} Listings</p>
-              <div className="category-arrow">
-                <ChevronRight size={18} />
-              </div>
-            </div>
+        <div className="category-grid-vibrant">
+          {categories.map((cat) => (
+            <Link href={cat.path} key={cat.name} className="cat-card-vibrant">
+               <div className="cat-icon-vibrant" style={{ backgroundColor: cat.color }}>
+                  <cat.icon size={28} color="white" />
+               </div>
+               <h3>{cat.name}</h3>
+               <p>{cat.count} Businesses</p>
+               <div className="cat-arrow">
+                  <ArrowRight size={18} />
+               </div>
+            </Link>
           ))}
-          <div className="category-card add-listing glass-card">
-            <div className="icon-wrapper add">
-              <Plus size={28} />
-            </div>
-            <h3>Add Your Business</h3>
-            <p>Get discovered today</p>
-            <div className="category-arrow">
-              <ChevronRight size={18} />
-            </div>
+          <div className="cat-card-vibrant add-business">
+               <div className="cat-icon-vibrant" style={{ backgroundColor: '#1A1A1A' }}>
+                  <Plus size={28} color="white" />
+               </div>
+               <h3>Your Business?</h3>
+               <p>Get listed today</p>
+               <Link href="/pricing" className="text-link">Learn More</Link>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="container cta-content glass-card">
-          <div className="cta-text">
-            <h2>Ready to grow your business?</h2>
-            <p>Join over 500+ local businesses already listed on the Federation's most trusted directory. Increase your visibility and attract more customers.</p>
-            <div className="cta-buttons">
-              <button className="btn-primary">List Your Business</button>
-              <button className="btn-secondary">View Pricing</button>
-            </div>
-          </div>
-          <div className="cta-image-wrapper">
-             <div className="stats-box glass-card">
-                <div className="stat">
-                  <h4>50k+</h4>
-                  <p>Monthly Visits</p>
-                </div>
-                <div className="stat">
-                  <h4>1.2k+</h4>
-                  <p>Total Listings</p>
-                </div>
-             </div>
-          </div>
+      {/* Featured Section */}
+      <section className="featured-section container">
+        <div className="featured-banner glass-card">
+           <div className="featured-content">
+              <h3>Boost Your Visibility</h3>
+              <p>Join hundreds of local businesses and reach thousands of potential customers daily. Our premium listings offer 10x more engagement.</p>
+              <Link href="/pricing" className="btn-primary">View Pricing Plans</Link>
+           </div>
+           <div className="featured-image">
+              <Image src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800" alt="Premium Business" fill />
+           </div>
         </div>
       </section>
 
       <style jsx>{`
         .home-container {
-          min-height: 100vh;
+          padding-bottom: 5rem;
+          overflow-x: hidden;
         }
 
+        /* Hero Styling */
         .hero {
+          padding: 6rem 0 8rem;
+          background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
           position: relative;
-          height: 80vh;
-          min-height: 600px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          text-align: center;
-        }
-
-        .hero-image {
-          object-fit: cover;
-          z-index: -2;
-        }
-
-        .hero-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
-          z-index: -1;
         }
 
         .hero-content {
-          max-width: 900px;
-          display: flex;
-          flex-direction: column;
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 4rem;
           align-items: center;
         }
 
         .hero-badge {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(8px);
+          display: inline-block;
+          background: rgba(255, 107, 0, 0.1);
+          color: var(--primary);
           padding: 0.5rem 1rem;
           border-radius: 100px;
+          font-weight: 700;
           font-size: 0.85rem;
-          font-weight: 600;
           margin-bottom: 1.5rem;
-          border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         h1 {
-          font-size: clamp(2.5rem, 8vw, 4.5rem);
+          font-size: 4.5rem;
           line-height: 1.1;
           margin-bottom: 1.5rem;
+          color: var(--foreground);
         }
 
-        .highlight {
-          color: var(--accent);
+        h1 span {
+          color: var(--primary);
+          display: block;
         }
 
-        .hero-subtitle {
+        .hero-text p {
           font-size: 1.25rem;
-          opacity: 0.9;
+          color: var(--muted);
           margin-bottom: 3rem;
           max-width: 600px;
+          line-height: 1.6;
         }
 
-        .search-box-container {
+        /* Search Box Vibrant */
+        .search-box-vibrant {
+          background: white;
+          padding: 0.75rem;
+          border-radius: 2rem;
           display: flex;
           align-items: center;
-          padding: 0.75rem;
-          width: 100%;
-          max-width: 850px;
-          gap: 0.5rem;
+          box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+          max-width: 800px;
         }
 
-        .search-input-group {
-          flex: 1;
+        .input-group {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          padding: 0 1rem;
+          padding: 0 1.5rem;
+          flex: 1;
         }
 
-        .search-icon {
-          color: var(--muted);
+        .input-icon {
+          color: var(--primary);
         }
 
-        input, .location-select {
-          background: transparent;
+        .input-group input {
           border: none;
           outline: none;
-          color: inherit;
-          font-size: 1rem;
-          width: 100%;
           padding: 0.75rem 0;
+          width: 100%;
+          font-size: 1rem;
+          color: var(--foreground);
         }
 
         .divider {
@@ -253,15 +200,76 @@ export default function Home() {
         }
 
         .search-btn {
-          white-space: nowrap;
+          background: var(--primary);
+          color: white;
+          border: none;
+          padding: 1rem 2rem;
+          border-radius: 1.5rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: transform 0.2s ease;
         }
 
+        .search-btn:hover {
+          transform: scale(1.05);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+          position: relative;
+          height: 500px;
+        }
+
+        .main-visual-card {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          border-radius: 3rem;
+          overflow: hidden;
+          transform: rotate(2deg);
+          box-shadow: var(--shadow-lg);
+          z-index: 2;
+        }
+
+        .main-visual-card :global(img) {
+          object-fit: cover;
+        }
+
+        .secondary-visual-card {
+          position: absolute;
+          top: -20px;
+          right: -20px;
+          width: 100%;
+          height: 100%;
+          background: var(--secondary);
+          border-radius: 3rem;
+          z-index: 1;
+          opacity: 0.3;
+        }
+
+        .floating-stat {
+          position: absolute;
+          bottom: 2rem;
+          right: 2rem;
+          padding: 1rem 1.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          background: rgba(255,255,255,0.9);
+          backdrop-filter: blur(10px);
+          border-radius: 1rem;
+          font-weight: 700;
+          font-size: 0.9rem;
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Category Grid Vibrant */
         .categories-section {
-          padding: 6rem 0;
+          padding-top: 8rem;
+          margin-bottom: 8rem;
         }
 
         .section-header {
-          text-align: center;
           margin-bottom: 4rem;
         }
 
@@ -275,166 +283,155 @@ export default function Home() {
           font-size: 1.1rem;
         }
 
-        .categories-grid {
+        .category-grid-vibrant {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-          gap: 1.5rem;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 2rem;
         }
 
-        .category-card {
-          padding: 2rem;
-          text-align: center;
-          cursor: pointer;
-          transition: all 0.3s ease;
+        .cat-card-vibrant {
+          background: white;
+          padding: 2.5rem;
+          border-radius: 2.5rem;
+          text-decoration: none;
+          color: inherit;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          border: 1px solid var(--border);
           position: relative;
           overflow: hidden;
         }
 
-        .category-card:hover {
-          transform: translateY(-5px);
+        .cat-card-vibrant:hover {
+          transform: translateY(-10px);
           border-color: var(--primary);
+          box-shadow: var(--shadow-lg);
         }
 
-        .icon-wrapper {
-          width: 64px;
-          height: 64px;
-          border-radius: 16px;
+        .cat-icon-vibrant {
+          width: 60px;
+          height: 60px;
+          border-radius: 1.25rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 0 auto 1.5rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
-        .icon-wrapper.add {
-          background: rgba(0, 71, 171, 0.1);
-          color: var(--primary);
+        .cat-card-vibrant h3 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
         }
 
-        .category-card h3 {
-          font-size: 1.25rem;
-          margin-bottom: 0.25rem;
-        }
-
-        .category-card p {
+        .cat-card-vibrant p {
           color: var(--muted);
+          font-weight: 500;
+        }
+
+        .cat-arrow {
+          position: absolute;
+          bottom: 2.5rem;
+          right: 2.5rem;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: var(--surface);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--primary);
+          transition: all 0.3s ease;
+        }
+
+        .cat-card-vibrant:hover .cat-arrow {
+          background: var(--primary);
+          color: white;
+        }
+
+        .add-business {
+           background: var(--surface);
+        }
+
+        .text-link {
+          display: inline-block;
+          margin-top: 1rem;
+          color: var(--primary);
+          font-weight: 700;
+          text-decoration: none;
           font-size: 0.9rem;
         }
 
-        .category-arrow {
-          position: absolute;
-          bottom: 1.5rem;
-          right: 1.5rem;
-          opacity: 0;
-          transform: translateX(-10px);
-          transition: all 0.3s ease;
-          color: var(--primary);
-        }
-
-        .category-card:hover .category-arrow {
-          opacity: 1;
-          transform: translateX(0);
-        }
-
-        .cta-section {
-          padding: 4rem 0 8rem;
-        }
-
-        .cta-content {
+        /* Featured Banner */
+        .featured-banner {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-          padding: 4rem;
-          align-items: center;
-          background: linear-gradient(135deg, var(--surface), var(--background));
+          overflow: hidden;
+          padding: 0;
+          background: var(--foreground);
+          color: white;
+          border-radius: 3rem;
         }
 
-        .cta-text h2 {
+        .featured-content {
+          padding: 5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 1.5rem;
+        }
+
+        .featured-content h3 {
           font-size: 2.5rem;
-          margin-bottom: 1.5rem;
         }
 
-        .cta-text p {
-          color: var(--muted);
+        .featured-content p {
           font-size: 1.1rem;
-          margin-bottom: 2.5rem;
+          opacity: 0.8;
           line-height: 1.6;
         }
 
-        .cta-buttons {
-          display: flex;
-          gap: 1rem;
-        }
-
-        .btn-secondary {
-          background: transparent;
-          border: 2px solid var(--border);
-          padding: 0.75rem 1.5rem;
-          border-radius: var(--radius);
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .btn-secondary:hover {
-          border-color: var(--primary);
-          color: var(--primary);
-        }
-
-        .cta-image-wrapper {
+        .featured-image {
           position: relative;
-          height: 300px;
-          background: url('/hero-bg.png') center/cover;
-          border-radius: var(--radius);
+          min-height: 400px;
         }
 
-        .stats-box {
-          position: absolute;
-          bottom: -2rem;
-          left: -2rem;
-          display: flex;
-          gap: 2rem;
-          padding: 2rem;
+        .featured-image :global(img) {
+          object-fit: cover;
         }
 
-        .stat h4 {
-          font-size: 1.5rem;
-          color: var(--primary);
-        }
-
-        .stat p {
-          font-size: 0.8rem;
-          color: var(--muted);
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        @media (max-width: 768px) {
-          .search-box-container {
-            flex-direction: column;
-            padding: 1.5rem;
-          }
-          
-          .divider {
-            width: 100%;
-            height: 1px;
-            margin: 0.5rem 0;
-          }
-
-          .cta-content {
+        @media (max-width: 992px) {
+          .hero-content {
             grid-template-columns: 1fr;
-            padding: 2rem;
             text-align: center;
           }
-
-          .cta-buttons {
-            justify-content: center;
+          .hero-text p {
+            margin: 0 auto 3rem;
           }
-
-          .cta-image-wrapper {
+          .search-box-vibrant {
+            flex-direction: column;
+            border-radius: 2rem;
+            gap: 1rem;
+          }
+          .divider {
             display: none;
+          }
+          .search-btn {
+            width: 100%;
+          }
+          h1 {
+            font-size: 3rem;
+          }
+          .hero-visual {
+            height: 350px;
+          }
+          .featured-banner {
+            grid-template-columns: 1fr;
+          }
+          .featured-content {
+            padding: 3rem;
           }
         }
       `}</style>
-    </main>
+    </div>
   );
 }

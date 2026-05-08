@@ -103,6 +103,9 @@ body { background: var(--background); color: var(--foreground); font-family: var
         ` }} />
       </head>
       <body>
+        <div style={{ background: 'red', color: 'white', padding: '50px', textAlign: 'center', fontSize: '30px', fontWeight: 'bold', position: 'relative', zIndex: 99999 }}>
+          DEPLOYMENT TEST v6.1 - IF YOU SEE THIS, IT IS LIVE
+        </div>
         <Navbar />
         <main>{children}</main>
         <Footer />
